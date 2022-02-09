@@ -88,6 +88,21 @@ function cancelToken() {
 }
 
 // INTERCEPTING REQUESTS & RESPONSES
+axios.interceptors.request.use(
+  (config) => {
+    console.log(config);
+    console.log(
+      `${config.method.toUpperCase()} request send to ${
+        config.url
+      } at ${new Date().getTime()}`
+    );
+    return config;
+  },
+  (error) => {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
 
 // AXIOS INSTANCES
 
