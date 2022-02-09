@@ -3,7 +3,6 @@ const postApiUrl = "https://jsonplaceholder.typicode.com/posts";
 
 // GET REQUEST
 function getTodos() {
-  console.log("GET Request");
   //axios({
   //  method: "get",
   //  url: "https://jsonplaceholder.typicode.com/todos",
@@ -23,7 +22,6 @@ function getTodos() {
 
 // POST REQUEST
 function addTodo() {
-  console.log("POST Request");
   axios
     .post(todoApiUrl, {
       title: "New One Todo",
@@ -35,7 +33,6 @@ function addTodo() {
 
 // PUT/PATCH REQUEST
 function updateTodo() {
-  console.log("PUT/PATCH Request");
   axios
     .put(todoApiUrl + "/1", {
       title: "Change to New One => updated",
@@ -47,7 +44,6 @@ function updateTodo() {
 
 // DELETE REQUEST
 function removeTodo() {
-  console.log("DELETE Request");
   axios
     .delete(todoApiUrl + "/1")
     .then((res) => showOutput(res))
@@ -56,7 +52,6 @@ function removeTodo() {
 
 // SIMULTANEOUS DATA
 function getData() {
-  console.log("Simultaneous Request");
   axios
     .all([axios.get(todoApiUrl), axios.get(postApiUrl)])
     //.then((res) => {
@@ -69,7 +64,23 @@ function getData() {
 
 // CUSTOM HEADERS
 function customHeaders() {
-  console.log("Custom Headers");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "sometoken",
+    },
+  };
+  axios
+    .post(
+      todoApiUrl,
+      {
+        title: "New Todo with token",
+        completed: false,
+      },
+      config
+    )
+    .then((res) => showOutput(res))
+    .catch((err) => console.error(err));
 }
 
 // TRANSFORMING REQUESTS & RESPONSES
