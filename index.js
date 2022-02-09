@@ -1,4 +1,6 @@
 const todoApiUrl = "https://jsonplaceholder.typicode.com/todos";
+const postApiUrl = "https://jsonplaceholder.typicode.com/posts";
+
 // GET REQUEST
 function getTodos() {
   console.log("GET Request");
@@ -55,6 +57,14 @@ function removeTodo() {
 // SIMULTANEOUS DATA
 function getData() {
   console.log("Simultaneous Request");
+  axios
+    .all([axios.get(todoApiUrl), axios.get(postApiUrl)])
+    //.then((res) => {
+    //  console.log(res); // array
+    //  showOutput(res[1]);
+    //})
+    .then(axios.spread((todos, posts) => showOutput(posts)))
+    .catch((err) => console.error(err));
 }
 
 // CUSTOM HEADERS
