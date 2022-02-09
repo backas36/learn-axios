@@ -34,11 +34,22 @@ function addTodo() {
 // PUT/PATCH REQUEST
 function updateTodo() {
   console.log("PUT/PATCH Request");
+  axios
+    .put(todoApiUrl + "/1", {
+      title: "Change to New One => updated",
+      completed: true,
+    })
+    .then((res) => showOutput(res))
+    .catch((err) => console.error(err));
 }
 
 // DELETE REQUEST
 function removeTodo() {
   console.log("DELETE Request");
+  axios
+    .delete(todoApiUrl + "/1")
+    .then((res) => showOutput(res))
+    .catch((err) => console.error(err));
 }
 
 // SIMULTANEOUS DATA
