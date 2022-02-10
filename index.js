@@ -143,6 +143,10 @@ function cancelToken() {
         console.log("Request canceled", thrown.message);
       }
     });
+
+  if (true) {
+    source.cancel("Request canceled");
+  }
 }
 
 // INTERCEPTING REQUESTS & RESPONSES
