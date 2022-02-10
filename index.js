@@ -131,6 +131,18 @@ function errorHandling() {
 // CANCEL TOKEN
 function cancelToken() {
   console.log("Cancel Token");
+  const source = axios.CancelToken.source();
+
+  axios
+    .get(todoApiUrl, {
+      cancelToken: source.token,
+    })
+    .then((res) => showOutput(res))
+    .catch((thrown) => {
+      if (axios.isCancel(thrown)) {
+        console.log("Request canceled", thrown.message);
+      }
+    });
 }
 
 // INTERCEPTING REQUESTS & RESPONSES
