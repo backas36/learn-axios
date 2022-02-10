@@ -85,7 +85,18 @@ function customHeaders() {
 
 // TRANSFORMING REQUESTS & RESPONSES
 function transformResponse() {
-  console.log("Transform Response");
+  const options = {
+    method: "POST",
+    url: todoApiUrl,
+    data: {
+      title: "hellow world",
+    },
+    transformResponse: axios.defaults.transformResponse.concat((data) => {
+      data.title = data.title.toUpperCase();
+      return data;
+    }),
+  };
+  axios(options).then((res) => showOutput(res));
 }
 
 // ERROR HANDLING
@@ -165,3 +176,5 @@ document
   .addEventListener("click", transformResponse);
 document.getElementById("error").addEventListener("click", errorHandling);
 document.getElementById("cancel").addEventListener("click", cancelToken);
+
+//https://www.youtube.com/watch?v=6LyagkoRWYA
