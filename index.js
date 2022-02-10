@@ -1,6 +1,11 @@
 const todoApiUrl = "https://jsonplaceholder.typicode.com/todos";
 const postApiUrl = "https://jsonplaceholder.typicode.com/posts";
 
+// AXIOS GLOBALS
+// 這樣 post 之後就會自己戴上這個 X-Auth-Token
+axios.defaults.headers.common["X-Auth-Token"] =
+  "jM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+
 // GET REQUEST
 function getTodos() {
   //axios({
