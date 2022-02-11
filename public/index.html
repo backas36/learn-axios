@@ -30,6 +30,26 @@
 
     }
     axiosGetWithParmas(123, "Yang")
+
+
+    const jsonToQueryString = (json) => {
+      return Object.keys(json).map(key => {
+        return encodeURIComponent(key) + '=' + encodeURIComponent(json[key])
+      }).join('&')
+    }
+    // form data
+    const axiosPostForm = async () => {
+      const res = await axios.post('/api/post', jsonToQueryString({ name: 'XXDDYANG', id: "223344" }))
+    }
+    // request payload
+    const axiosPost = async () => {
+      const res = await axios.post('/api/post', {
+        firstName: 'Ashi',
+        lastName: 'Yang'
+      })
+    }
+    axiosPost()
+    axiosPostForm()
   </script>
 </body>
 
